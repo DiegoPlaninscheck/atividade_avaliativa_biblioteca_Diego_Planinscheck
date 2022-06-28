@@ -1,0 +1,30 @@
+{
+  "name": "atividade_avaliativa_biblioteca_diego_planinscheck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiegoPlaninscheck/atividade_avaliativa_biblioteca_Diego_Planinscheck.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiegoPlaninscheck/atividade_avaliativa_biblioteca_Diego_Planinscheck/issues"
+  },
+  "homepage": "https://github.com/DiegoPlaninscheck/atividade_avaliativa_biblioteca_Diego_Planinscheck#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "firebase": "^9.8.4",
+    "firebase-admin": "^11.0.0",
+    "nodemon": "^2.0.18"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1"
+  }
+}
