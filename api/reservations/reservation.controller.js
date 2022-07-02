@@ -2,31 +2,31 @@ const express = require('express');
 
 const router = express.Router();
 
-const bookHandler = require('./book.handler');
+const reservationHandler = require('./reservation.handler');
 
 router.get("/", (req, res) => {
-    res.json(bookHandler.searchBooks())
+    res.json(reservationHandler.searchreservations())
 })
 
 router.get("/:id", (req, res) => {
     const id = req.params.id;
-    res.json(bookHandler.searchBook(id))
+    res.json(reservationHandler.searchreservation(id))
 })
 
 router.post("/", (req, res) => {
     const data = req.body;
-    res.json(bookHandler.createBook(data));
+    res.json(reservationHandler.createReservation(data));
 })
 
 router.put("/:id", (req, res) => {
     const id = req.params.id;
     const data = req.body;
-    res.json(bookHandler.editBook(data, id))
+    res.json(reservationHandler.editReservation(data, id))
 })
 
 router.delete("/:id", (req, res) => {
     const id = req.params.id;
-    res.json(bookHandler.deleteBook(id));
+    res.json(reservationHandler.deleteReservation(id));
 })
 
 module.exports = router;
