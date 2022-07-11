@@ -20,7 +20,6 @@ async function deleteAuthor(id){
     return await crud.remove("authors", id);
 }
 
-
 module.exports = {
     searchAuthors, searchAuthor, createAuthor, editAuthor, deleteAuthor
 };

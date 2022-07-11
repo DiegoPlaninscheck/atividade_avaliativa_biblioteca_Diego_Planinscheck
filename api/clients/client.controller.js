@@ -4,29 +4,29 @@ const router = express.Router();
 
 const clientHandler = require('./client.handler');
 
-router.get("/", (req, res) => {
-    res.json(clientHandler.searchClients())
+router.get("/", async (req, res) => {
+    res.json(await clientHandler.searchClients())
 })
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(clientHandler.searchClients(id))
+    res.json(await clientHandler.searchClient(id))
 })
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const data = req.body;
-    res.json(clientHandler.createClient(data));
+    res.json(await clientHandler.createClient(data));
 })
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
     const id = req.params.id;
     const data = req.body;
-    res.json(clientHandler.editClient(data, id))
+    res.json(await clientHandler.editClient(data, id))
 })
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(clientHandler.deleteClient(id));
+    res.json(await clientHandler.deleteClient(id));
 })
 
 module.exports = router;

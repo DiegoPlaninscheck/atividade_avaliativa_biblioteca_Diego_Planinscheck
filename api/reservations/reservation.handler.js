@@ -1,25 +1,24 @@
 const crud = require("../../crud/index");
 
-function searchreservations() {
-    return crud.get("reservation");
+async function searchreservations() {
+    return await crud.get("reservation");
 }
 
-function searchreservation(id) {
-    return crud.get("reservation", id);
+async function searchreservation(id) {
+    return await crud.getByID("reservation", id);
 }
 
-function createReservation(data) {
-   return crud.save("reservation", false, data);
+async function createReservation(data) {
+   return await crud.save("reservation", false, data);
 }
 
-function editReservation(data, id){
-    return crud.save("reservation", id, data);
+async function editReservation(data, id){
+    return await crud.save("reservation", id, data);
 }
 
-function deleteReservation(id){
-    return crud.remove("reservation", id);
+async function deleteReservation(id){
+    return await crud.remove("reservation", id);
 }
-
 
 module.exports = {
     searchreservations, searchreservation, createReservation, editReservation, deleteReservation

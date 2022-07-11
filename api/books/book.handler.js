@@ -1,25 +1,24 @@
 const crud = require("../../crud/index");
 
-function searchBooks() {
-    return crud.get("books");
+async function searchBooks() {
+    return await crud.get("books");
 }
 
-function searchBook(id) {
-    return crud.get("books", id);
+async function searchBook(id) {
+    return await crud.getByID("books", id);
 }
 
-function createBook(data) {
-   return crud.save("books", false, data);
+async function createBook(data) {
+   return await crud.save("books", false, data);
 }
 
-function editBook(data, id){
-    return crud.save("books", id, data);
+async function editBook(data, id){
+    return await crud.save("books", id, data);
 }
 
-function deleteBook(id){
-    return crud.remove("books", id);
+async function deleteBook(id){
+    return await crud.remove("books", id);
 }
-
 
 module.exports = {
     searchBooks, searchBook, createBook, editBook, deleteBook

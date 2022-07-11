@@ -4,29 +4,29 @@ const router = express.Router();
 
 const reservationHandler = require('./reservation.handler');
 
-router.get("/", (req, res) => {
-    res.json(reservationHandler.searchreservations())
+router.get("/", async (req, res) => {
+    res.json(await reservationHandler.searchreservations())
 })
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(reservationHandler.searchreservation(id))
+    res.json(await reservationHandler.searchreservation(id))
 })
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const data = req.body;
-    res.json(reservationHandler.createReservation(data));
+    res.json(await reservationHandler.createReservation(data));
 })
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
     const id = req.params.id;
     const data = req.body;
-    res.json(reservationHandler.editReservation(data, id))
+    res.json(await reservationHandler.editReservation(data, id))
 })
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(reservationHandler.deleteReservation(id));
+    res.json(await reservationHandler.deleteReservation(id));
 })
 
 module.exports = router;

@@ -4,29 +4,29 @@ const router = express.Router();
 
 const publisherHandler = require('./publisher.handler');
 
-router.get("/", (req, res) => {
-    res.json(publisherHandler.searchPublishers())
+router.get("/", async (req, res) => {
+    res.json(await publisherHandler.searchPublishers())
 })
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(publisherHandler.searchPublisher(id))
+    res.json(await publisherHandler.searchPublisher(id))
 })
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const data = req.body;
-    res.json(publisherHandler.createPublisher(data));
+    res.json(await publisherHandler.createPublisher(data));
 })
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
     const id = req.params.id;
     const data = req.body;
-    res.json(publisherHandler.editPublisher(data, id))
+    res.json(await publisherHandler.editPublisher(data, id))
 })
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(publisherHandler.deletePublisher(id));
+    res.json(await publisherHandler.deletePublisher(id));
 })
 
 module.exports = router;

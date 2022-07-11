@@ -4,29 +4,29 @@ const router = express.Router();
 
 const authorsBookHandler = require('./authorsBook.handler');
 
-router.get("/", (req, res) => {
-    res.json(authorsBookHandler.searchAuthorsBook())
+router.get("/", async (req, res) => {
+    res.json(await authorsBookHandler.searchAuthorsBook())
 })
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(authorsBookHandler.searchAuthorBook(id))
+    res.json(await authorsBookHandler.searchAuthorBook(id))
 })
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const data = req.body;
-    res.json(authorsBookHandler.createAuthorBook(data));
+    res.json(await authorsBookHandler.createAuthorBook(data));
 })
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
     const id = req.params.id;
     const data = req.body;
-    res.json(authorsBookHandler.editAuthorBook(data, id))
+    res.json(await authorsBookHandler.editAuthorBook(data, id))
 })
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(authorsBookHandler.deleteAuthorBook(id));
+    res.json(await authorsBookHandler.deleteAuthorBook(id));
 })
 
 module.exports = router;
