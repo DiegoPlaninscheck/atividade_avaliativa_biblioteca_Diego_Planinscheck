@@ -9,19 +9,7 @@ async function searchAuthorBook(id) {
 }
 
 async function createAuthorBook(data) {
-  const list = [];
-  const get = await crud.get("authors_Book");
-  list.push(get);
-  console.log(list);
-  const test = list.filter(e => {
-    console.log(e.id);
-    console.log(e.book_id);
-    if (e.author_id == data.author_id && e.book_id == data.book_id) {
-        return {"message": "equals"}
-    }
-    return e;
-  });
-  console.log(test);
+  return await crud.save("authors_Book", null, data);
 }
 
 async function editAuthorBook(data, id) {
