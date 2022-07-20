@@ -12,7 +12,14 @@ async function searchreservation(id) {
 async function createReservation(data) {
   const books = await book.searchBooks("books");
   const reservation = await crud.get("reservation");
-  const client = reservation.filter((c) => c.client_id == data.client_id);
+  const clients = reservation.filter((c) => c.client_id == data.client_id);
+
+  // for(const client of clients){
+  //   if(){
+          
+  //   }
+  // }
+
   if (client == "") {
     for (let i = 0; i < books.length; i++) {
       const book = books.filter(b => b.id == data.book_id[i]);
