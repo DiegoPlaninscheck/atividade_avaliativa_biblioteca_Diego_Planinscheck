@@ -5,12 +5,12 @@ const router = express.Router();
 const reservationHandler = require('./reservation.handler');
 
 router.get("/", async (req, res) => {
-    res.json(await reservationHandler.searchreservations())
+    res.json(await reservationHandler.searchReservations())
 })
 
 router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    res.json(await reservationHandler.searchreservation(id))
+    res.json(await reservationHandler.searchReservation(id))
 })
 
 router.post("/", async (req, res) => {
