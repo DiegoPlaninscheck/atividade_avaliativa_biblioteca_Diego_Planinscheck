@@ -1,7 +1,6 @@
 const crud = require("../../crud/index");
 const reservationBook = require("../reservationBook/reservationBook.handler");
 const books = require("../books/book.handler");
-const { searchAuthorBook } = require("../authorsBook/authorsBook.handler");
 
 async function searchReservations() {
   return await crud.get("reservation");
@@ -13,7 +12,9 @@ async function searchReservation(id) {
 
 async function createReservation(data) {
   const reservation = await searchReservations();
-  const clientReservation = reservation.filter((c) => c.client_id == data.client_id);
+  const clientReservation = reservation.filter(
+    (c) => c.client_id == data.client_id
+  );
 
   for (const client of clientReservation) {
     if (client != null) {
@@ -28,26 +29,36 @@ async function createReservation(data) {
     }
   }
 
-  // const savedReservation = await crud.save("reservation", false, data);
+  //verificar criacao de apenas uma reserva por cliente 
+  let savedReservation;
+  if(data.client_id != reservation.client_id){
+    savedReservation = await crud.save("reservation", false, data);
+  }
 
-  for(const book_id of data.book_id){
-      const book = await books.searchBook(book_id);
-      if(book.reservation){
-        return {message: "This book have a reservation!"}
-      }
-      console.log(book_id);
-      const author = await searchAuthorBook(book_id);
-      const author_id = author.map(a => {
-        return a.author_id
-      });
+  for (const book_id of data.book_id) {
+    const book = await books.searchBook(book_id);
+    if (book.reservation) {
+      return { message: "This book have a reservation!" };
+    }
 
-      // const data_book = {
-      //   book_id: book_id,
-      //   reservation_id: savedReservation.id,
-      //   status: "pending"
-      // };
+    const edited_book = {
+      name: book.name,
+      description:  book.description,
+      number_of_pages: book.number_of_pages,
+      gender: book.gender,
+      lauch: book.lauch,
+      publisher_id: book.publisher_id,
+      reservation: true
+  }
 
-      // await reservationBook.createReservationBook(data_book);
+    const data_book = {
+      book_id: book_id,
+      reservation_id: savedReservation.id,
+      status: "pending",
+    };
+
+    await books.editBook(edited_book, book_id);
+    await reservationBook.createReservationBook(data_book);
   }
 }
 
