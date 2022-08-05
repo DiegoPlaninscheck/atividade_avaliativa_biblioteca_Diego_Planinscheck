@@ -10,18 +10,7 @@ async function searchBook(id) {
 }
 
 async function createBook(data) {
-  const infoBook = {
-    name: data.name,
-    description: data.description,
-    number_of_pages: data.number_of_pages,
-    gender: data.gender,
-    lauch: data.lauch,
-    publisher_id: data.publisher_id,
-    reservation: false,
-  };
-  const savedBook = await crud.save("books", false, infoBook);
-
-  console.log(data.author);
+  const savedBook = await crud.save("books", false, data.book);
 
   for (const author of data.author) {
     const authorBook = {
